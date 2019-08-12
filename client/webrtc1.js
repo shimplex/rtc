@@ -220,7 +220,7 @@ const Peer = window.Peer;
         mediaStreamTrack_remote_videoArray.push(mediaStreamTrack)
       }
     });
-    document.getElementById('#local-candidate').innerHTML = "adfaefe";
+    document.getElementById('local-candidate').innerHTML = "adfaefe";
 
     /*
     document.getElementById('#local-candidate').innerHTML = localCandidate.ip + ':' + localCandidate.port + '(' + localCandidate.protocol + ')' + '<BR>type:' + localCandidate.candidateType;
