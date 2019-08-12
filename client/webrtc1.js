@@ -49,7 +49,6 @@ const Peer = window.Peer;
     }
 
     const mediaConnection = peer.call(remoteId.value, localStream);
-    const stats = mediaConnection.getPeerConnection().getStats();
     if (existingMediaConnection) {
       existingMediaConnection.close();
     }
@@ -75,8 +74,6 @@ const Peer = window.Peer;
   // Register callee handler
   peer.on('call', mediaConnection => {
     mediaConnection.answer(localStream);
-
-    const stats = mediaConnection.getPeerConnection().getStats();
 
     if (existingMediaConnection) {
       existingMediaConnection.close();
