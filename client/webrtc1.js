@@ -17,13 +17,13 @@ const Peer = window.Peer;
 
   const localStream = await navigator.mediaDevices
     .getUserMedia({
-      audio: true,
+      audio: false,
       video: {
-             width: {min: 640, ideal: 1280}, 
-             height: {min: 480,ideal: 720},
-             frameRate: { min: 20, max: 60} //,
-            // facingMode: { ideal: "environment" }
-            } ,
+        width: { min: 640, ideal: 1280 },
+        height: { min: 480, ideal: 720 },
+        frameRate: { min: 20, max: 60 } //,
+        // facingMode: { ideal: "environment" }
+      },
     })
     .catch(console.error);
 
@@ -69,12 +69,26 @@ const Peer = window.Peer;
   peer.on('call', mediaConnection => {
     mediaConnection.answer(localStream);
 
+    const stats = mediaConnection.getPeerConnection().getStats();
+
     mediaConnection.on('stream', async stream => {
       // Render remote stream for callee
       remoteVideo.srcObject = stream;
       remoteVideo.playsInline = true;
       await remoteVideo.play().catch(console.error);
     });
+
+    // `existingCall`には`call`オブジェクトが格納されており、getPeerConnection()を実行するとRTCPeerConnectionが取得できる
+    const _PC = existingCall.getPeerConnection();
+    // setInterval`で1000ms間隔でgetRTCStatsを実行する
+    timer = setInterval(() => {
+      // `getRTCStats`に`getStats`オブジェクトを引き数で渡す
+      getRTCStats(_PC.getStats());
+    }, 1000);
+
+    async function getRTCStats(statsObject){
+      let stats = await statsObject;
+    }
 
     mediaConnection.once('close', () => {
       remoteVideo.srcObject.getTracks().forEach(track => track.stop());
