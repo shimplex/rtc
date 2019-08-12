@@ -220,7 +220,9 @@ const Peer = window.Peer;
         mediaStreamTrack_remote_videoArray.push(mediaStreamTrack)
       }
     });
+    document.getElementById('#local-candidate').innerHTML = "adfaefe";
 
+    /*
     document.getElementById('#local-candidate').innerHTML = localCandidate.ip + ':' + localCandidate.port + '(' + localCandidate.protocol + ')' + '<BR>type:' + localCandidate.candidateType;
     document.getElementById('#remote-candidate').innerHTML = remoteCandidate.ip + ':' + remoteCandidate.port + '(' + remoteCandidate.protocol + ')' + '<BR>type:' + remoteCandidate.candidateType;
 
@@ -235,7 +237,7 @@ const Peer = window.Peer;
 
     document.getElementById('#local-audio-video').innerHTML = 'audioLevel:' + mediaStreamTrack_local_audioArray[0].audioLevel + '<BR>frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
     document.getElementById('#remote-audio-video').innerHTML = 'audioLevel:' + mediaStreamTrack_remote_audioArray[0].audioLevel + '<BR>frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_remote_videoArray[0].frameWidth;
-
+*/
   }
 
 })();
