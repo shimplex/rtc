@@ -102,7 +102,7 @@ const Peer = window.Peer;
 
   async function getRTCStats(statsObject) {
     let stats = await statsObject;
-    debug.console("stat");
+    console.log("stat");
   }
 
 })();
