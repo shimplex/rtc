@@ -21,8 +21,8 @@ const Peer = window.Peer;
       video: {
              width: {min: 640, ideal: 1280}, 
              height: {min: 480,ideal: 720},
-             frameRate: { min: 20, max: 60},
-             facingMode: { ideal: "environment" }
+             frameRate: { min: 20, max: 60} //,
+            // facingMode: { ideal: "environment" }
             } ,
     })
     .catch(console.error);
