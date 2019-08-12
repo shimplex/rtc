@@ -5,6 +5,7 @@ const Peer = window.Peer;
   const localId = document.getElementById('js-local-id');
   const callTrigger = document.getElementById('js-call-trigger');
   const closeTrigger = document.getElementById('js-close-trigger');
+  const statsTrigger = document.getElementById('js-stats-trigger');
   const remoteVideo = document.getElementById('js-remote-stream');
   const remoteId = document.getElementById('js-remote-id');
   const meta = document.getElementById('js-meta');
@@ -15,6 +16,7 @@ const Peer = window.Peer;
     SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
   `.trim();
 
+  let existingMediaConnection;
   const localStream = await navigator.mediaDevices
     .getUserMedia({
       audio: false,
@@ -47,6 +49,11 @@ const Peer = window.Peer;
     }
 
     const mediaConnection = peer.call(remoteId.value, localStream);
+    const stats = mediaConnection.getPeerConnection().getStats();
+    if (existingMediaConnection) {
+      existingMediaConnection.close();
+    }
+    existingMediaConnection = mediaConnection;
 
     mediaConnection.on('stream', async stream => {
       // Render remote stream for caller
@@ -71,24 +78,17 @@ const Peer = window.Peer;
 
     const stats = mediaConnection.getPeerConnection().getStats();
 
+    if (existingMediaConnection) {
+      existingMediaConnection.close();
+    }
+    existingMediaConnection = mediaConnection;
+
     mediaConnection.on('stream', async stream => {
       // Render remote stream for callee
       remoteVideo.srcObject = stream;
       remoteVideo.playsInline = true;
       await remoteVideo.play().catch(console.error);
     });
-
-    // `existingCall`には`call`オブジェクトが格納されており、getPeerConnection()を実行するとRTCPeerConnectionが取得できる
-    const _PC = existingCall.getPeerConnection();
-    // setInterval`で1000ms間隔でgetRTCStatsを実行する
-    timer = setInterval(() => {
-      // `getRTCStats`に`getStats`オブジェクトを引き数で渡す
-      getRTCStats(_PC.getStats());
-    }, 1000);
-
-    async function getRTCStats(statsObject){
-      let stats = await statsObject;
-    }
 
     mediaConnection.once('close', () => {
       remoteVideo.srcObject.getTracks().forEach(track => track.stop());
@@ -99,4 +99,20 @@ const Peer = window.Peer;
   });
 
   peer.on('error', console.error);
+
+  // Register caller handler
+  statsTrigger.addEventListener('click', () => {
+    // `existingCall`には`call`オブジェクトが格納されており、getPeerConnection()を実行するとRTCPeerConnectionが取得できる
+    const _PC = existingMediaConnection.getPeerConnection();
+    // setInterval`で1000ms間隔でgetRTCStatsを実行する
+    timer = setInterval(() => {
+      // `getRTCStats`に`getStats`オブジェクトを引き数で渡す
+      getRTCStats(_PC.getStats());
+    }, 1000);
+
+    async function getRTCStats(statsObject) {
+      let stats = await statsObject;
+    }
+  });  
+
 })();
