@@ -221,20 +221,20 @@ const Peer = window.Peer;
       }
     });
 
-    getElementById('#local-candidate').innerHTML = (localCandidate.ip + ':' + localCandidate.port + '(' + localCandidate.protocol + ')' + '<BR>type:' + localCandidate.candidateType);
-    getElementById('#remote-candidate').innerHTML = (remoteCandidate.ip + ':' + remoteCandidate.port + '(' + remoteCandidate.protocol + ')' + '<BR>type:' + remoteCandidate.candidateType);
+    document.getElementById('#local-candidate').innerHTML = (localCandidate.ip + ':' + localCandidate.port + '(' + localCandidate.protocol + ')' + '<BR>type:' + localCandidate.candidateType);
+    document.getElementById('#remote-candidate').innerHTML = (remoteCandidate.ip + ':' + remoteCandidate.port + '(' + remoteCandidate.protocol + ')' + '<BR>type:' + remoteCandidate.candidateType);
 
-    getElementById('#inbound-codec').innerHTML = (inboundVideoCodec.mimeType + '<BR>' + inboundAudioCodec.mimeType);
-    getElementById('#outbound-codec').innerHTML = (outboundVideoCodec.mimeType + '<BR>' + outboundAudioCodec.mimeType)
+    document.getElementById('#inbound-codec').innerHTML = (inboundVideoCodec.mimeType + '<BR>' + inboundAudioCodec.mimeType);
+    document.getElementById('#outbound-codec').innerHTML = (outboundVideoCodec.mimeType + '<BR>' + outboundAudioCodec.mimeType)
 
-    getElementById('#inbound-audio').innerHTML = ('bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost);
-    getElementById('#inbound-video').innerHTML = ('bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost);
+    document.getElementById('#inbound-audio').innerHTML = ('bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost);
+    document.getElementById('#inbound-video').innerHTML = ('bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost);
 
-    getElementById('#outbound-audio').innerHTML = ('bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent);
-    getElementById('#outbound-video').innerHTML = ('bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent);
+    document.getElementById('#outbound-audio').innerHTML = ('bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent);
+    document.getElementById('#outbound-video').innerHTML = ('bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent);
 
-    getElementById('#local-audio-video').innerHTML = ('audioLevel:' + mediaStreamTrack_local_audioArray[0].audioLevel + '<BR>frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent);
-    getElementById('#remote-audio-video').innerHTML = ('audioLevel:' + mediaStreamTrack_remote_audioArray[0].audioLevel + '<BR>frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_remote_videoArray[0].frameWidth);
+    document.getElementById('#local-audio-video').innerHTML = ('audioLevel:' + mediaStreamTrack_local_audioArray[0].audioLevel + '<BR>frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent);
+    document.getElementById('#remote-audio-video').innerHTML = ('audioLevel:' + mediaStreamTrack_remote_audioArray[0].audioLevel + '<BR>frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_remote_videoArray[0].frameWidth);
 
   }
 
