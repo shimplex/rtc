@@ -238,7 +238,7 @@ const Peer = window.Peer;
     //    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
     // document.getElementById('outbound-video').innerHTML = 'bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent;
 
-    document.getElementById('local-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
+    // document.getElementById('local-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
     document.getElementById('remote-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_remote_videoArray[0].frameWidth;
   }
 
