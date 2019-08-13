@@ -47,7 +47,9 @@ const Peer = window.Peer;
       return;
     }
 
-    const mediaConnection = peer.call(remoteId.value, localStream);
+    const mediaConnection = peer.call(remoteId.value, localStream, {
+      videoCodec: 'H264',
+    });
     // Register caller handler
     statsTrigger.addEventListener('click', () => startStatsTimer(mediaConnection));
 
