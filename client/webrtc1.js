@@ -47,7 +47,10 @@ const Peer = window.Peer;
       return;
     }
 
-    const mediaConnection = peer.call(remoteId.value, localStream, {
+    //    const mediaConnection = peer.call(remoteId.value, localStream, {
+    const mediaConnection = peer.call(remoteId.value, {
+      videoReceiveEnabled: true,
+      audioReceiveEnabled: true,
       videoCodec: 'H264',
     });
     // Register caller handler
@@ -229,13 +232,13 @@ const Peer = window.Peer;
     document.getElementById('inbound-codec').innerHTML = inboundVideoCodec.mimeType;
     document.getElementById('outbound-codec').innerHTML = outboundVideoCodec.mimeType;
 
-//    document.getElementById('inbound-audio').innerHTML = 'bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost;
+    //    document.getElementById('inbound-audio').innerHTML = 'bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost;
     document.getElementById('inbound-video').innerHTML = 'bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost
 
-//    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
+    //    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
     document.getElementById('outbound-video').innerHTML = 'bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent;
 
-    document.getElementById('local-audio-video').innerHTML =  'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
+    document.getElementById('local-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
     document.getElementById('remote-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + '<BR>frameWidth:' + mediaStreamTrack_remote_videoArray[0].frameWidth;
   }
 
