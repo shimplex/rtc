@@ -102,7 +102,7 @@ const Peer = window.Peer;
     const _PC = existingMediaConnection.getPeerConnection();
     timer = setInterval(() => {
       getRTCStats(_PC.getStats());
-    }, 1000);
+    }, 100);
   }
 
   async function getRTCStats(statsObject) {
@@ -235,7 +235,7 @@ const Peer = window.Peer;
     //    document.getElementById('inbound-audio').innerHTML = 'bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost;
     document.getElementById('inbound-video').innerHTML = 'bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost 
       + '<BR>framesDecoded: ' + inboundRTPVideoStreamArray[0].framesDecoded
-      + '<BR>frameRate: ' + mediaStreamTrack_remote_videoArray[0].frameRate;
+      + '<BR>frameRate: ' + inboundRTPVideoStreamArray[0].frameRate;
     //    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
     // document.getElementById('outbound-video').innerHTML = 'bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent;
 
