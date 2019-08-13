@@ -240,7 +240,7 @@ const Peer = window.Peer;
 
     // document.getElementById('local-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + ' x ' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
     document.getElementById('remote-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_remote_videoArray[0].frameHeight + ' x ' + mediaStreamTrack_remote_videoArray[0].frameWidth + " / " + mediaStreamTrack_remote_videoArray[0].frameRate
-      + '<BR>framesDecoded' + mediaStreamTrack_remote_videoArray[0].framesDecoded + ' / framesDropped: ' + mediaStreamTrack_local_videoArray[0].framesDropped + ' / framesReceived:' + mediaStreamTrack_remote_videoArray[0].framesReceived;
+      + '<BR>framesDecoded' + mediaStreamTrack_remote_videoArray[0].framesDecoded + ' / framesDropped: ' + mediaStreamTrack_remote_videoArray[0].framesDropped + ' / framesReceived:' + mediaStreamTrack_remote_videoArray[0].framesReceived;
   }
 
 })();''
