@@ -16,11 +16,6 @@ let previous_received_bytes = 0;
   const meta = document.getElementById('js-meta');
   const sdkSrc = document.querySelector('script[src*=skyway]');
 
-  meta.innerText = `
-    UA: ${navigator.userAgent}
-    SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
-  `.trim();
-
   const localStream = await navigator.mediaDevices
     .getUserMedia({
       audio: false,
