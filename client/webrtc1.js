@@ -253,7 +253,7 @@ let previous_received_bytes = 0;
 
     //    document.getElementById('inbound-audio').innerHTML = 'bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost;
     document.getElementById('inbound-video').innerHTML = 'bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost
-      + '<BR>bitrate (kbps): ' + bit_per_second / 1000.0
+      + '<BR>bitrate (kbps): ' + Math.round(bit_per_second / 1000.0)
       + '<BR>framesDecoded: ' + inboundRTPVideoStreamArray[0].framesDecoded
       + '<BR>frameRate: ' + frames_per_second;
     //    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
