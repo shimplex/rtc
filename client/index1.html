@@ -5,75 +5,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>P2P Media example</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <div class="container">
-    <h1 class="heading">P2P Media example</h1>
-    <p class="note">
-      Enter remote peer ID to call.
-    </p>
-    <div class="p2p-media">
-      <div class="remote-stream">
-        <video id="js-remote-stream"></video>
-        <button id="js-stats-trigger">Stats</button>
+    <div class="main, row">
+      <div class="p2p-media, col-6">
+        <div class="remote-stream">
+          <video id="js-remote-stream"></video>
+        </div>
+        <div class="local-stream">
+          <video id="js-local-stream"></video>
+          <p>Your ID: <span id="js-local-id"></span></p>
+          <input type="text" placeholder="Remote Peer ID" id="js-remote-id">
+          <button id="js-call-trigger">Call</button>
+          <button id="js-close-trigger">Close</button>
+        </div>
       </div>
-      <div class="local-stream">
-        <video id="js-local-stream"></video>
-        <p>Your ID: <span id="js-local-id"></span></p>
-        <input type="text" placeholder="Remote Peer ID" id="js-remote-id">
-        <button id="js-call-trigger">Call</button>
-        <button id="js-close-trigger">Close</button>
+      <p class="meta" id="js-meta"></p>
+      <div class="stats, col-6">
+        <button id="js-stats-trigger">Stats</button>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Local Candidate</td>
+              <td id=local-candidate></td>
+            </tr>
+            <tr>
+              <td>Remote Candidate</td>
+              <td id=remote-candidate></td>
+            </tr>
+            <tr>
+              <td>Inbound Codec</td>
+              <td id=inbound-codec></td>
+            </tr>
+            <tr>
+              <td>Outbound Codec</td>
+              <td id=outbound-codec></td>
+            </tr>
+            <tr>
+              <td>Inbound Audio</td>
+              <td id=inbound-audio></td>
+            </tr>
+            <tr>
+              <td>Inbound Video</td>
+              <td id=inbound-video></td>
+            </tr>
+            <tr>
+              <td>Outbound Audio</td>
+              <td id=outbound-audio></td>
+            </tr>
+            <tr>
+              <td>Outbound Video</td>
+              <td id=outbound-video></td>
+            </tr>
+            <tr>
+              <td>Local Audio/Vidoe Track</td>
+              <td id=local-audio-video></td>
+            </tr>
+            <tr>
+              <td>Remote Audio/Video Track</td>
+              <td id=remote-audio-video></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <p class="meta" id="js-meta"></p>
-  </div>
-  <div class="stats">
-    <table>
-      <tbody>
-        <tr>
-          <td>Local Candidate</td>
-          <td id=local-candidate></td>
-        </tr>
-        <tr>
-          <td>Remote Candidate</td>
-          <td id=remote-candidate></td>
-        </tr>
-        <tr>
-          <td>Inbound Codec</td>
-          <td id=inbound-codec></td>
-        </tr>
-        <tr>
-          <td>Outbound Codec</td>
-          <td id=outbound-codec></td>
-        </tr>
-        <tr>
-          <td>Inbound Audio</td>
-          <td id=inbound-audio></td>
-        </tr>
-        <tr>
-          <td>Inbound Video</td>
-          <td id=inbound-video></td>
-        </tr>
-        <tr>
-          <td>Outbound Audio</td>
-          <td id=outbound-audio></td>
-        </tr>
-        <tr>
-          <td>Outbound Video</td>
-          <td id=outbound-video></td>
-        </tr>
-        <tr>
-          <td>Local Audio/Vidoe Track</td>
-          <td id=local-audio-video></td>
-        </tr>
-        <tr>
-          <td>Remote Audio/Video Track</td>
-          <td id=remote-audio-video></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
   <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
   <script src="./apk.js"></script>
