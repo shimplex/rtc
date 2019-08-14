@@ -13,8 +13,6 @@ let previous_received_bytes = 0;
   const statsTrigger = document.getElementById('js-stats-trigger');
   const remoteVideo = document.getElementById('js-remote-stream');
   const remoteId = document.getElementById('js-remote-id');
-  const meta = document.getElementById('js-meta');
-  const sdkSrc = document.querySelector('script[src*=skyway]');
 
   const localStream = await navigator.mediaDevices
     .getUserMedia({
@@ -24,7 +22,7 @@ let previous_received_bytes = 0;
         // height: { min: 480, ideal: 720 },
         width: { min: 640, ideal: 1920 },
         height: { min: 480, ideal: 1080 },
-        frameRate: { min: 20, max: 60 },
+        frameRate: { min: 10, max: 30 },
         facingMode: { ideal: "environment" }
       },
     })
@@ -53,7 +51,7 @@ let previous_received_bytes = 0;
     const mediaConnection = peer.call(remoteId.value, null, {
       videoReceiveEnabled: true,
       audioReceiveEnabled: true,
-      videoCodec: 'H264',
+      // videoCodec: 'H264',
     });
     // Register caller handler
     statsTrigger.addEventListener('click', () => startStatsTimer(mediaConnection));
