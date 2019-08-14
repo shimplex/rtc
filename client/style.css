@@ -19,13 +19,22 @@
 }
 
 .p2p-media .remote-stream {
-  width: 50%;
+  /* width: 50%; */
 }
 
 .p2p-media .local-stream {
   width: 30%;
 }
 
+.p2p-media .local-stream video {
+  max-width: 100px !important;
+  height: auto !important;
+}
+
+#js-remote-id {
+  width: 15em;
+
+}
 /* p2p-data styles */
 .p2p-data {
 }
