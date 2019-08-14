@@ -23,10 +23,10 @@ let previous_received_frames = 0;
     .getUserMedia({
       audio: false,
       video: {
-        width: { min: 640, ideal: 1280 },
-        height: { min: 480, ideal: 720 },
-        // width: { min: 640, ideal: 1920 },
-        // height: { min: 480, ideal: 1080 },
+        // width: { min: 640, ideal: 1280 },
+        // height: { min: 480, ideal: 720 },
+        width: { min: 640, ideal: 1920 },
+        height: { min: 480, ideal: 1080 },
         frameRate: { min: 20, max: 60 },
         facingMode: { ideal: "environment" }
       },
@@ -251,7 +251,7 @@ let previous_received_frames = 0;
     // document.getElementById('outbound-video').innerHTML = 'bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent;
 
     // document.getElementById('local-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + ' x ' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
-    document.getElementById('remote-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_remote_videoArray[0].frameHeight + ' x ' + mediaStreamTrack_remote_videoArray[0].frameWidth 
+    document.getElementById('remote-audio-video').innerHTML = 'Resolution: ' + mediaStreamTrack_remote_videoArray[0].frameWidth + ' x ' + mediaStreamTrack_remote_videoArray[0].frameHeight 
       + '<BR>framesDecoded: ' + mediaStreamTrack_remote_videoArray[0].framesDecoded + ' / framesDropped: ' + mediaStreamTrack_remote_videoArray[0].framesDropped + ' / framesReceived:' + mediaStreamTrack_remote_videoArray[0].framesReceived;
   }
 
