@@ -1,7 +1,9 @@
 const Peer = window.Peer;
 const stats_period = 100; // ms
-let received_frames_list = new Array(1000/stats_period).fill(0);
+let received_frames_list = new Array(1000 / stats_period).fill(0);
+let received_bytes_list = new Array(1000 / stats_period).fill(0);
 let previous_received_frames = 0;
+let previous_received_bytes = 0;
 
 (async function main() {
   const localVideo = document.getElementById('js-local-stream');
@@ -235,7 +237,13 @@ let previous_received_frames = 0;
     received_frames_list.shift();
     received_frames_list.push(currently_received_frames - previous_received_frames);
     previous_received_frames = currently_received_frames;
-    let frames_per_second = received_frames_list.reduce((total, data) => {return total + data}); // in latest 1 sec
+    let frames_per_second = received_frames_list.reduce((total, data) => { return total + data }); // in latest 1 sec
+
+    let currently_received_bytes = inboundRTPVideoStreamArray[0].bytesReceived;
+    received_bytes_list.shift();
+    received_bytes_list.push(currently_received_bytes - previous_received_bytes);
+    previous_received_bytes = currently_received_bytes;
+    let bit_per_second = received_bytes_list.reduce((total, data) => { return total + data }) * 8; // in latest 1 sec
 
     document.getElementById('local-candidate').innerHTML = localCandidate.ip + ':' + localCandidate.port + '(' + localCandidate.protocol + ')' + '<BR>type:' + localCandidate.candidateType;
     document.getElementById('remote-candidate').innerHTML = remoteCandidate.ip + ':' + remoteCandidate.port + '(' + remoteCandidate.protocol + ')' + '<BR>type:' + remoteCandidate.candidateType;
@@ -244,14 +252,15 @@ let previous_received_frames = 0;
     // document.getElementById('outbound-codec').innerHTML = outboundVideoCodec.mimeType;
 
     //    document.getElementById('inbound-audio').innerHTML = 'bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost;
-    document.getElementById('inbound-video').innerHTML = 'bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost 
+    document.getElementById('inbound-video').innerHTML = 'bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost
+      + '<BR>bitrate (kbps): ' + bit_per_second / 1000.0
       + '<BR>framesDecoded: ' + inboundRTPVideoStreamArray[0].framesDecoded
       + '<BR>frameRate: ' + frames_per_second;
     //    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
     // document.getElementById('outbound-video').innerHTML = 'bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent;
 
     // document.getElementById('local-audio-video').innerHTML = 'frameHeight:' + mediaStreamTrack_local_videoArray[0].frameHeight + ' x ' + mediaStreamTrack_local_videoArray[0].frameWidth + '<BR>framesSent:' + mediaStreamTrack_local_videoArray[0].framesSent;
-    document.getElementById('remote-audio-video').innerHTML = 'Resolution: ' + mediaStreamTrack_remote_videoArray[0].frameWidth + ' x ' + mediaStreamTrack_remote_videoArray[0].frameHeight 
+    document.getElementById('remote-audio-video').innerHTML = 'Resolution: ' + mediaStreamTrack_remote_videoArray[0].frameWidth + ' x ' + mediaStreamTrack_remote_videoArray[0].frameHeight
       + '<BR>framesDecoded: ' + mediaStreamTrack_remote_videoArray[0].framesDecoded + ' / framesDropped: ' + mediaStreamTrack_remote_videoArray[0].framesDropped + ' / framesReceived:' + mediaStreamTrack_remote_videoArray[0].framesReceived;
   }
 
