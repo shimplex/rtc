@@ -23,8 +23,10 @@ let previous_received_frames = 0;
     .getUserMedia({
       audio: false,
       video: {
-        width: { min: 640, ideal: 1920 },
-        height: { min: 480, ideal: 1080 },
+        width: { min: 640, ideal: 1280 },
+        height: { min: 480, ideal: 720 },
+        // width: { min: 640, ideal: 1920 },
+        // height: { min: 480, ideal: 1080 },
         frameRate: { min: 20, max: 60 },
         facingMode: { ideal: "environment" }
       },
