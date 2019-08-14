@@ -1,4 +1,7 @@
 const Peer = window.Peer;
+const stats_period = 100; // ms
+let received_frames_list = new Array(1000/stats_period).fill(0);
+let previous_received_frames = 0;
 
 (async function main() {
   const localVideo = document.getElementById('js-local-stream');
@@ -102,7 +105,7 @@ const Peer = window.Peer;
     const _PC = existingMediaConnection.getPeerConnection();
     timer = setInterval(() => {
       getRTCStats(_PC.getStats());
-    }, 100);
+    }, stats_period);
   }
 
   async function getRTCStats(statsObject) {
@@ -226,6 +229,12 @@ const Peer = window.Peer;
       }
     });
 
+    let currently_received_frames = inboundRTPVideoStreamArray[0].framesDecoded;
+    received_frames_list.shift();
+    received_frames_list.push(currently_received_frames - previous_received_frames);
+    previous_received_frames = currently_received_frames;
+    let frames_per_second = received_frames_list.reduce((total, data) => {return total + data}); // in latest 1 sec
+
     document.getElementById('local-candidate').innerHTML = localCandidate.ip + ':' + localCandidate.port + '(' + localCandidate.protocol + ')' + '<BR>type:' + localCandidate.candidateType;
     document.getElementById('remote-candidate').innerHTML = remoteCandidate.ip + ':' + remoteCandidate.port + '(' + remoteCandidate.protocol + ')' + '<BR>type:' + remoteCandidate.candidateType;
 
@@ -235,7 +244,7 @@ const Peer = window.Peer;
     //    document.getElementById('inbound-audio').innerHTML = 'bytesReceived:' + inboundRTPAudioStreamArray[0].bytesReceived + '<BR>jitter:' + inboundRTPAudioStreamArray[0].jitter + '<BR>fractionLost:' + inboundRTPAudioStreamArray[0].fractionLost;
     document.getElementById('inbound-video').innerHTML = 'bytesReceived:' + inboundRTPVideoStreamArray[0].bytesReceived + '<BR>fractionLost:' + inboundRTPVideoStreamArray[0].fractionLost 
       + '<BR>framesDecoded: ' + inboundRTPVideoStreamArray[0].framesDecoded
-      + '<BR>frameRate: ' + inboundRTPVideoStreamArray[0].frameRate;
+      + '<BR>frameRate: ' + frames_per_second;
     //    document.getElementById('outbound-audio').innerHTML = 'bytesSent:' + outboundRTPAudioStreamArray[0].bytesSent;
     // document.getElementById('outbound-video').innerHTML = 'bytesSent:' + outboundRTPVideoStreamArray[0].bytesSent;
 
@@ -244,4 +253,4 @@ const Peer = window.Peer;
       + '<BR>framesDecoded: ' + mediaStreamTrack_remote_videoArray[0].framesDecoded + ' / framesDropped: ' + mediaStreamTrack_remote_videoArray[0].framesDropped + ' / framesReceived:' + mediaStreamTrack_remote_videoArray[0].framesReceived;
   }
 
-})();''
+})();
