@@ -18,10 +18,10 @@ let previous_received_bytes = 0;
     .getUserMedia({
       audio: false,
       video: {
-        // width: { min: 640, ideal: 1280 },
-        // height: { min: 480, ideal: 720 },
-        width: { min: 640, ideal: 1920 },
-        height: { min: 480, ideal: 1080 },
+        width: { min: 640, ideal: 1280 },
+        height: { min: 360, ideal: 720 },
+        //width: { min: 640, ideal: 1920 },
+        //height: { min: 480, ideal: 1080 },
         frameRate: { min: 10, max: 30 },
         facingMode: { ideal: "environment" }
       },
@@ -51,7 +51,7 @@ let previous_received_bytes = 0;
     const mediaConnection = peer.call(remoteId.value, null, {
       videoReceiveEnabled: true,
       audioReceiveEnabled: true,
-      // videoCodec: 'H264',
+      videoCodec: 'H264',
     });
     // Register caller handler
     statsTrigger.addEventListener('click', () => startStatsTimer(mediaConnection));
