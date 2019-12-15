@@ -22,7 +22,7 @@ let previous_received_bytes = 0;
         height: { min: 360, ideal: 720 },
         //width: { min: 640, ideal: 1920 },
         //height: { min: 480, ideal: 1080 },
-        frameRate: { min: 10, max: 30 },
+        frameRate: { min: 30, max: 30 },
         facingMode: { ideal: "environment" }
       },
     })
